@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title_page }}
+{% endblock %}
+
+{% block body_title %}
+    <div class="col-3 text-end">
+        <a href="{% url 'wiki:edit' title_page %}" class="btn btn-outline-danger">Edit Page</a>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <style>
+        h1{
+            text-decoration: underline;
+        }
+    </style>
+    {% autoescape off %}
+        {{ content }}
+    {% endautoescape %}
+{% endblock %}

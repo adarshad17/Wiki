@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'encyclopedia/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'encyclopedia/bootstrap.min.css' %}">
+</head>
+<body class="bg-primary bg-opacity-10">
+    <header class="my-2">
+        <div class="container border-bottom border-2">
+            <div class="row">
+                <div class="col-3 px-5 text-end">
+                    <a href="{% url 'wiki:index' %}"><h1 style="color: white;">WIKI</h1></a>
+                </div>
+                <div class="col-9 bg-primary bg-opacity-25">
+                    <div class="navbar bg-body-light">
+                        <div class="container-fluid justify-content-center">
+                            <form action="{% url 'wiki:search' %}" class="d-flex" role="search" method="get"  >
+                                <input class="form-control ms-auto p-2" type="search" placeholder="Search" aria-label="Search" name="title">
+                                <button class="btn btn-outline-light ms-2 p-2" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="my-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 border-end border-2 text-center py-3 bg-primary bg-opacity-25">
+                    <div class="container">
+                        <div class="row d-inline">
+                            <a href="{% url 'wiki:index' %}" class="btn btn-outline-light btn-sm my-2 p-2">Home</a>
+                        </div>
+                        <div class="row d-inline">
+                            <a href="{% url 'wiki:create' %}" class="btn btn-outline-light btn-sm my-2 p-2">Create Page</a>
+                        </div>
+                        <div class="row d-inline">
+                            <a href="{% url 'wiki:random' %}" class="btn btn-outline-light btn-sm my-2 p-2">Random Page</a>
+                        </div>
+                        <div class="row d-inline">
+                            <a href="" class="btn btn-outline-light btn-sm my-2 p-2">About Me</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="container border border-2 border-white p-5">
+                        <div class="row">
+                            <div class="container">
+                                <div class="row justify-content-end">
+                                    {% block body_title %}{% endblock %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            {% block body %}{% endblock %}
+                        </div>
+                        <div class="row">
+                            <div class="container">
+                                <div class="row justify-content-between">
+                                    {% block edit-page %}{% endblock %}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
+
+

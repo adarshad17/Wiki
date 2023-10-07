@@ -1,0 +1,35 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create a page
+{% endblock %}
+
+{% block body_title %}
+    {{ error|safe }}
+    <div class="alert alert-info" role="alert">
+        Please write down your page in a markup language called Markdown. Read through <a href=>Github's Markdown guide</a> to get an understanding for how Markdown's syntax works.
+    </div>
+{% endblock %}
+
+{% block body %}
+    <form action="{% url 'wiki:create' %}" method="post">
+        <div class="mb-3">
+            {% csrf_token %}
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" placeholder="Title Of the Entry" name="title" value="{{ title }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="entry" class="form-label">Entry</label>
+            <textarea type="text" class="form-control" id="entry" rows="auto" autocomplete="off" name="entry" required>{{ content }}</textarea>
+        </div>
+        <div class="row">
+            <div class="col p-2 flex-grow-1">
+            </div>
+            <div class="col-2 p-2">
+                <div class="col text-end">
+                    <button type="submit" class="btn btn-outline-success">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
